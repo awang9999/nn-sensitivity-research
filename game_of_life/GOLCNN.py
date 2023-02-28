@@ -2,45 +2,33 @@ import numpy as np
 import torch
 from torch import nn
 
-class MinNet(nn.Module):
-    def __init__(self, n_steps=1):
-        super(MinNet, self).__init__()
+class OPNet(nn.Module):
+    '''
+    - m refers to the factor of overcompleteness of parameters in the CNN
+    - n  refers to the number of steps of the Game of Life this CNN simulates.
+    This is consistent with the convention used in the Kenyon and Springer paper
+    about learning the Game of Life.
+    '''
+    def __init__(self, m=2, n=1):
+        super(OPNet, self).__init__()
         
-        self.num_steps = n_steps
-        self.overcompleteness_factor = 1
-        
-        # Minimal Network Weights
-        w1 = torch.tensor([[[[1.0, 1.0, 1.0],[1.0, 0.1, 1.0],[1.0, 1.0, 1.0]]],
-                            [[[1.0, 1.0, 1.0],[1.0, 1.0, 1.0],[1.0, 1.0, 1.0]]]])
-        b1 = torch.tensor([-3.0, -2.0])
-        
-        w2 = torch.tensor([[[[-10.0]], [[1.0]]]])
-        b2 = torch.tensor([0.0])
-        
-        s=20
-        w3 = torch.tensor([[[[2.0 * s]]]])
-        b3 = torch.tensor([-1.0 * s])
+        self.overcompleteness_factor = m
+        self.num_steps = n
         
         self.type1_layers = nn.ModuleList()
         self.type2_layers = nn.ModuleList()
         
         for i in range(self.num_steps):
-            type1_layer = nn.Conv2d(1, 2, 3, padding=1, padding_mode='circular')
-            type1_layer.weight = torch.nn.Parameter(w1, requires_grad=False)
-            type1_layer.bias = torch.nn.Parameter(b1, requires_grad=False)
+            type1_layer = nn.Conv2d(m, m*2, 3, padding=1, padding_mode='circular')
             self.type1_layers.append(type1_layer)
         
-            type2_layer = nn.Conv2d(2, 1, 1)
-            type2_layer.weight = torch.nn.Parameter(w2, requires_grad=False)
-            type2_layer.bias = torch.nn.Parameter(b2, requires_grad=False)
+            type2_layer = nn.Conv2d(m*2, m, 1)
             self.type2_layers.append(type2_layer)
         
         self.relu1 = nn.ReLU()
         self.relu2 = nn.ReLU()
         
-        self.final_conv_layer = nn.Conv2d(1, 1, 1)
-        self.final_conv_layer.weight = torch.nn.Parameter(w3, requires_grad=False)
-        self.final_conv_layer.bias = torch.nn.Parameter(b3, requires_grad=False)
+        self.final_conv_layer = nn.Conv2d(m, 1, 1)
         self.sigmoid3 = nn.Sigmoid()
         
     def forward(self, x):

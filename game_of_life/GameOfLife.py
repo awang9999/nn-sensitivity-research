@@ -24,6 +24,10 @@ class GameOfLifeEngine:
     def step(self):
         pass
     
+    def step_n(self, n):
+        for i in range(n):
+            self.step()
+    
     '''
     The reset() function simply sets the game state back to the initial state.
     '''
@@ -68,9 +72,9 @@ ConvEngine 'implements' the GameOfLifeEngine interface using a
 Convolutional Neural Network.
 '''
 class ConvEngine(GameOfLifeEngine):
-    def __init__(self, init_state_param):
+    def __init__(self, init_state_param, n_steps=1):
         super(ConvEngine, self).__init__(init_state_param)
-        self.model = MinNet()
+        self.model = MinNet(n_steps=n_steps)
         self.model.eval()
     
     def step(self):
