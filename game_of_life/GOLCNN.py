@@ -68,3 +68,52 @@ class OPNet(nn.Module):
             out = self.final_conv_layer(out)
             out = self.sigmoid3(out)
             return out
+        
+        
+def train_epoch(model, opt, criterion, train_loader, filters, device="cuda"):
+    model.train()
+    losses = []
+    
+    for x_batch, y_batch in train_loader:
+        x_batch = x_batch.repeat(1,filters,1,1)
+        x_batch = x_batch.to(device)
+        
+        y_batch = y_batch.to(device)
+        y_batch = y_batch[:,None,:,:]
+        
+        opt.zero_grad()
+        y_hat = model(x_batch)
+        loss = criterion(y_hat, y_batch)
+        loss.backward()
+        opt.step()
+        losses.append(loss.cpu().data.numpy())
+    
+    return np.mean(losses)
+
+def test_model(model, test_loader, filters, criterion, device="cuda"):
+    model.eval()
+    size = len(test_loader.dataset)
+    losses = []
+    num_correct = 0
+    
+    for x_batch, y_batch in test_loader:
+        x_batch = x_batch.repeat(1,filters,1,1)
+        x_batch = x_batch.to(device)
+        y_batch = y_batch.to(device)
+        
+        batch_outputs = model(x_batch)[:,0,:,:]
+        batch_loss = criterion(batch_outputs, y_batch).cpu().data.numpy()
+        losses.append(batch_loss)
+        
+        batch_preds = batch_outputs.cpu().detach().numpy()
+        batch_preds = batch_preds.round()
+        y_batch = y_batch.cpu().detach().numpy()
+        
+        for (pred, y) in zip(batch_preds, y_batch):
+            num_correct += np.all(np.equal(batch_preds, y_batch))
+    
+    avg_loss = np.mean(losses)
+    acc = num_correct / size
+    num_wrong = size - num_correct
+    
+    return acc, avg_loss, num_correct, num_wrong
