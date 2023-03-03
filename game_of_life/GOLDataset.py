@@ -4,7 +4,7 @@ from torch.utils.data import TensorDataset, DataLoader
 
 from GameOfLife import StandardEngine
 
-def generateDataset(dataSetSize=1000, size=32, n_steps=2, batch_size=64, returnTensor=False):
+def generateDataset(dataSetSize=1000, size=32, n_steps=2, returnTensor=False):
     init_state = np.zeros((32,32))
     engine = StandardEngine(init_state)
     
@@ -33,5 +33,5 @@ def generateDataset(dataSetSize=1000, size=32, n_steps=2, batch_size=64, returnT
     if returnTensor:
         return dataSet
     
-    dataLoader = DataLoader(dataSet, batch_size=batch_size)
+    dataLoader = DataLoader(dataSet)
     return dataLoader

@@ -109,8 +109,7 @@ def test_model(model, test_loader, filters, criterion, device="cuda"):
         batch_preds = batch_preds.round()
         y_batch = y_batch.cpu().detach().numpy()
         
-        for (pred, y) in zip(batch_preds, y_batch):
-            num_correct += np.all(np.equal(batch_preds, y_batch))
+        num_correct += np.all(np.equal(batch_preds, y_batch))
     
     avg_loss = np.mean(losses)
     acc = num_correct / size
