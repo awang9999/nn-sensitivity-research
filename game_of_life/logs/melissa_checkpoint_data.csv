@@ -1,0 +1,16 @@
+,epoch,checkpoint_name,accuracy,test_loss,num_correct,num_wrong
+0,100,melissa_m8_n2_checkpoint100.pt,0.0,0.17894754,0,1000
+1,200,melissa_m8_n2_checkpoint200.pt,0.0,0.16789854,0,1000
+2,300,melissa_m8_n2_checkpoint300.pt,0.0,0.16071561,0,1000
+3,400,melissa_m8_n2_checkpoint400.pt,0.0,0.15792114,0,1000
+4,500,melissa_m8_n2_checkpoint500.pt,0.0,0.14863507,0,1000
+5,600,melissa_m8_n2_checkpoint600.pt,0.0,0.13941422,0,1000
+6,700,melissa_m8_n2_checkpoint700.pt,0.0,0.13380261,0,1000
+7,800,melissa_m8_n2_checkpoint800.pt,0.0,0.11756349,0,1000
+8,900,melissa_m8_n2_checkpoint900.pt,0.0,0.045117516,0,1000
+9,1000,melissa_m8_n2_checkpoint1000.pt,1.0,0.0017564201,1000,0
+10,1100,melissa_m8_n2_checkpoint1100.pt,1.0,0.000544869,1000,0
+11,1200,melissa_m8_n2_checkpoint1200.pt,1.0,0.00028981586,1000,0
+12,1300,melissa_m8_n2_checkpoint1300.pt,1.0,0.00018992044,1000,0
+13,1400,melissa_m8_n2_checkpoint1400.pt,1.0,0.00013698604,1000,0
+14,1500,melissa_m8_n2_checkpoint1500.pt,1.0,0.000105791296,1000,0

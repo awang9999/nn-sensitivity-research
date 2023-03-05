@@ -1,0 +1,7 @@
+,epoch,checkpoint_name,accuracy,test_loss,num_correct,num_wrong
+0,1000,karol_m8_n2_checkpoint1000.pt,0.0,0.050216865,0,1000
+1,1100,karol_m8_n2_checkpoint1100.pt,0.943,0.0018658285,943,57
+2,1200,karol_m8_n2_checkpoint1200.pt,1.0,0.0005295646,1000,0
+3,1300,karol_m8_n2_checkpoint1300.pt,1.0,0.00026671943,1000,0
+4,1400,karol_m8_n2_checkpoint1400.pt,1.0,0.0001678382,1000,0
+5,1500,karol_m8_n2_checkpoint1500.pt,1.0,0.00011755959,1000,0

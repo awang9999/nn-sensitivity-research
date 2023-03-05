@@ -1,0 +1,7 @@
+,epoch,checkpoint_name,accuracy,test_loss,num_correct,num_wrong
+0,1000,irene_m8_n2_checkpoint1000.pt,0.0,0.050255112,0,1000
+1,1100,irene_m8_n2_checkpoint1100.pt,0.949,0.00187875,949,51
+2,1200,irene_m8_n2_checkpoint1200.pt,1.0,0.0005328803,1000,0
+3,1300,irene_m8_n2_checkpoint1300.pt,1.0,0.00026804316,1000,0
+4,1400,irene_m8_n2_checkpoint1400.pt,1.0,0.00016762364,1000,0
+5,1500,irene_m8_n2_checkpoint1500.pt,1.0,0.00011740207,1000,0

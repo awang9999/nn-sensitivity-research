@@ -1,0 +1,7 @@
+,epoch,checkpoint_name,accuracy,test_loss,num_correct,num_wrong
+0,1000,jeff_m8_n2_checkpoint1000.pt,0.0,0.05021347,0,1000
+1,1100,jeff_m8_n2_checkpoint1100.pt,0.949,0.0018816254,949,51
+2,1200,jeff_m8_n2_checkpoint1200.pt,1.0,0.0005357351,1000,0
+3,1300,jeff_m8_n2_checkpoint1300.pt,1.0,0.00026875085,1000,0
+4,1400,jeff_m8_n2_checkpoint1400.pt,1.0,0.0001687887,1000,0
+5,1500,jeff_m8_n2_checkpoint1500.pt,1.0,0.00011835756,1000,0
